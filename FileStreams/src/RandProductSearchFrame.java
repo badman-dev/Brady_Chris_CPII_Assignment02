@@ -26,7 +26,7 @@ public class RandProductSearchFrame extends JFrame{
         Toolkit tk=Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
 
-        setTitle("Random Product Maker");
+        setTitle("Random Product Search");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
