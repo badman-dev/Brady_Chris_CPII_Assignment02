@@ -18,19 +18,19 @@ public class Product {
     }
 
     public void formatFields(int idLimit, int nameLimit, int descLimit) {
-        if (ID.length() > idLimit) {
+        if (ID.length() < idLimit) {
             int difference = idLimit - ID.length();
             for (int i = 0; i < difference; i++) {
                 ID += " ";
             }
         }
-        if (name.length() > nameLimit) {
+        if (name.length() < nameLimit) {
             int difference = nameLimit - name.length();
             for (int i = 0; i < difference; i++) {
                 name += " ";
             }
         }
-        if (description.length() > descLimit) {
+        if (description.length() < descLimit) {
             int difference = descLimit - description.length();
             for (int i = 0; i < difference; i++) {
                 description += " ";
