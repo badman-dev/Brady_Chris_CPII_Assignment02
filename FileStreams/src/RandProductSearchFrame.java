@@ -65,7 +65,7 @@ public class RandProductSearchFrame extends JFrame{
             File newFile = new File(System.getProperty("user.dir") + "/products.txt");
             raf = new RandomAccessFile(newFile, "r");
             raf.seek(0);
-            System.out.println(raf.length());
+
             while (raf.getFilePointer() < raf.length()) {
                 byte[] bytes = new byte[12];
                 raf.read(bytes);
@@ -79,10 +79,9 @@ public class RandProductSearchFrame extends JFrame{
                 bytes = new byte[8];
                 raf.read(bytes);
                 double cost = ByteBuffer.wrap(bytes).getDouble();
-                System.out.println(ID + ", " + name + ", " + description + ", " + cost);
-                resultsArea.append(ID + ", " + name + ", " + description + ", " + cost + "\n");
 
                 Product newProduct = new Product (ID, name, description, cost);
+                resultsArea.append(newProduct.getID() + ", " + newProduct.getName() + ", " + newProduct.getDescription() + ", " + newProduct.getCost() + "\n");
                 products.add(newProduct);
             }
         } catch(Exception e) {
@@ -92,15 +91,12 @@ public class RandProductSearchFrame extends JFrame{
 
     private void searchHandler() {
         resultsArea.setText("");
-        try {
+        String filterWord = searchField.getText();
 
-//            byte[] bytes = new byte[12];
-//            raf.read(bytes);
-//            System.out.println(new String(bytes));
-////            System.out.println(raf.readChar());
-//            resultsArea.append(new String(bytes));
-        } catch(Exception e) {
-            e.printStackTrace();
+        for (Product prod : products) {
+            if (prod.getName().toLowerCase().contains(filterWord)) {
+                resultsArea.append(prod.getID() + ", " + prod.getName() + ", " + prod.getDescription() + ", " + prod.getCost() + "\n");
+            }
         }
     }
 }
